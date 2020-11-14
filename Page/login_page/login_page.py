@@ -9,6 +9,7 @@ class LoginPage:
         self.driver = driver
         # self.driver = webdriver.Chrome()
 
+    # 正常登录
     def login(self, username, password):
         user_txt = "//input[@id='uname']"
         pwd_txt = "//input[@id='pwd']"
@@ -20,6 +21,7 @@ class LoginPage:
         WebDriverWait(self.driver, 20).until(ec.visibility_of_element_located((By.XPATH, login_but)))
         self.driver.find_element_by_xpath(login_but).click()
 
+    # 获取错误的提示信息
     def get_middle_error_info(self):
         middle_error_info = "//div[@class='ui-dialog-content']"
         WebDriverWait(self.driver, 20).until(ec.visibility_of_element_located((By.XPATH, middle_error_info)))
