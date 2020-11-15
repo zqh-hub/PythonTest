@@ -1,11 +1,10 @@
 import ddt
 import unittest
-
+from data import common_data
 from selenium import webdriver
-from Data import common_data
-from Data.login_data import login_data
-from Page.login_page.index_page import IndexPage
-from Page.login_page.login_page import LoginPage
+from data.login_data import login_data
+from page.login_page.index_page import IndexPage
+from page.login_page.login_page import LoginPage
 
 
 @ddt.ddt
