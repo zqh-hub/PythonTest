@@ -5,6 +5,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
+from common import dir_config
 
 
 class BasePage:
@@ -26,7 +27,7 @@ class BasePage:
             start = datetime.datetime.now()
             WebDriverWait(self.driver, wait_time, poll_frequency).until(ec.visibility_of_element_located(locator))
             end = datetime.datetime.now()
-            logging.info("等待结束，时长：{}".format(end - start))
+            logging.info("等待结束，时长：{}".format((end - start).seconds))
         except:
             logging.exception("等待元素可见失败")
             # 截图
@@ -128,12 +129,10 @@ class BasePage:
         pass
 
     # 截图
-    def save_screen(self, name):
+    def save_screen(self, doc):
         # 图片的名称：模块名_页面名称_操作名称_年-月-日_时分秒.png
-        '''
-        shot_time = time.strftime("%Y-%m-%d_%H%M%S")
-        file_name = "{0}_{1}.png".format(name, shot_time)
-        self.driver.save_screenshot(file_name)
-        os.path.abspath()
-        '''
-        pass
+        file_path = dir_config.screen_dir
+        shot_time = time.strftime("%Y-%m-%d", time.localtime(time.time()))
+        file_name = "{0}_{1}.png".format(doc, shot_time)
+        print(file_path + file_name)
+        self.driver.save_screenshot(file_path + file_name)
